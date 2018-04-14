@@ -1,0 +1,8 @@
+<li id="blog-<%= blog.id %>">
+  <hr>
+  <h2 class="title"><%= blog.title %></h2><br>
+  <span class="content"><%= blog.content %></span><br><br>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(blog.created_at) %> ago.
+  </span>
+</li>
