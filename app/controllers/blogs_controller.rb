@@ -2,11 +2,11 @@
 
 class BlogsController < ApplicationController
   before_action :set_blog, only: %i[show edit update destroy]
-
+  before_action :authenticate_user!
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all.order(created_at: :desc).paginate(page: params[:page], per_page: 1)
+    @blogs = current_user.blogs.all.order(created_at: :desc).paginate(page: params[:page], per_page: 1)
   end
 
   # GET /blogs/1
@@ -15,7 +15,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs/new
   def new
-    @blog = Blog.new
+    @blog = current_user.blogs.new
   end
 
   # GET /blogs/1/edit
@@ -24,7 +24,7 @@ class BlogsController < ApplicationController
   # POST /blogs
   # POST /blogs.json
   def create
-    @blog = Blog.new(blog_params)
+    @blog = current_user.blogs.new(blog_params)
 
     respond_to do |format|
       if @blog.save
@@ -65,7 +65,7 @@ class BlogsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_blog
-    @blog = Blog.find(params[:id])
+    @blog = current_user.blogs.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

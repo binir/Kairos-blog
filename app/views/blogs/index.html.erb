@@ -1,17 +1,20 @@
-<p id="notice"><%= notice %></p>
 
 <div class="col-md-8">
   <% if @blogs.any? %>
-    <h1 class="title" >Blogs (<%= @blogs.count %>)</h1>
+    <div class ="containter jumbotron">
+      <h1 class="title" >Blogs (<%= @blogs.count %>)</h1>
     <ul class="blogs">
       <%= render @blogs %>
     </ul>
     <%= will_paginate @blogs %>
     <span class="timestamp">
   </span>
+    </div>
+    <% else %>
+  <p class="jumbotron">You have not created any blogs</p>
   <% end %>
 </div>
 
 <br>
 
-<%= link_to 'New Blog', new_blog_path %>
+<%= link_to 'New Blog', new_blog_path , class: "form-control btn btn-success" %>
