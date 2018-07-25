@@ -51,4 +51,4 @@ production:
   <<: *default
   database: Kairos_production
   username: Kairos
-  password: <%= ENV['KAIROS_DATABASE_PASSWORD'] %>
+  password: sjhn73n0psugfh3iuq4ng
